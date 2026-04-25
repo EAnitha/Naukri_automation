@@ -25,13 +25,13 @@ await page.locator("//button[text()='Login']").click()
 await page.locator('.view-profile-wrapper').click()
 
 // wait for the file input to be attached and upload using a resolved path
-const resumePath = path.resolve('datafiles/MANJUNATH R.docx')
+const resumePath = path.resolve('datafiles/Anitha_QA.docx')
 await page.waitForSelector('input[type="file"]', { state: 'attached' })
 await page.setInputFiles('input[type="file"]', resumePath)
 //await page.locator('//input[@Class="dummyUpload typ-14Bold"]').setInputFiles('tests/uploadfiles/MANJUNATH R.docx')
 
-await  page.locator('img.nI-gNb-icon-img').click()
-await page.locator("//a[@title='Logout']").click()
-await page.close()
+// await  page.locator('img.nI-gNb-icon-img').click()
+// await page.locator("//a[@title='Logout']").click()
+// await page.close()
 
 })
