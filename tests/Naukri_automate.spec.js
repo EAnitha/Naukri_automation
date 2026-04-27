@@ -1,13 +1,15 @@
 import path from 'path';
 import {test, expect} from "@playwright/test"
-import data from "../datafiles/testdata.json"
+import data from "../datafiles/testdata.json" assert { type: 'json' }
 
 
 test ('verify naukri',async ({page})=>{
 
-await page.goto('https://www.naukri.com/')
+await page.goto('https://www.naukri.com/', { waitUntil: 'domcontentloaded', timeout: 120000 })
 
-await page.locator("//a[normalize-space(text())='Login']").click()
+await expect(page.locator('h1')).not.toContainText('Access Denied')
+await expect(page.locator("text=Login")).toBeVisible({ timeout: 30000 })
+await page.locator("text=Login").click()
 
 //await page.setInputFiles('input[type="file"]', 'e2e/MANJUNATH R.docx')
 

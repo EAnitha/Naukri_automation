@@ -1,15 +1,8 @@
 // @ts-check
 import { defineConfig, devices } from '@playwright/test';
-import { TIMEOUT } from 'dns';
-require('dotenv').config();
+import dotenv from 'dotenv';
 
-/**
- * Read environment variables from file.
- * https://github.com/motdotla/dotenv
- */
-// import dotenv from 'dotenv';
-// import path from 'path';
-// dotenv.config({ path: path.resolve(__dirname, '.env') });
+dotenv.config();
 
 /**
  * @see https://playwright.dev/docs/test-configuration
@@ -40,7 +33,17 @@ export default defineConfig({
 
     actionTimeout: 300000,      // Timeout for actions
     navigationTimeout: 300000,  // Timeout for navigations
-  
+    headless: true,
+    ignoreHTTPSErrors: true,
+    viewport: { width: 1280, height: 800 },
+    userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36',
+    extraHTTPHeaders: {
+      'Accept-Language': 'en-US,en;q=0.9',
+    },
+    launchOptions: {
+      args: ['--disable-blink-features=AutomationControlled'],
+    },
+
     /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
     trace: 'on-first-retry',
   },
